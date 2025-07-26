@@ -7,10 +7,11 @@ import {
     FaPhone,
     FaTwitter
 } from 'react-icons/fa';
+import axios from 'axios'
+import { toast } from 'react-toastify';
 
 const ContactPage = () => {
 
-    const [contactForm, setContactForm] = useState({ name: '', email: '', subject: '', message: '' });
     const [visibleSections, setVisibleSections] = useState(new Set());
 
     const sectionRefs = {
@@ -47,16 +48,43 @@ const ContactPage = () => {
         return () => observer.disconnect();
     }, []);
 
+    const contactHandler = async (e) => {
+        e.preventDefault();
+
+        const toastId = toast.loading("Sending your message...");
 
 
-    // Scroll to section
-    const scrollToSection = (sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const subject = e.target.subject.value;
+        const description = e.target.description.value;
+
+        const payload = { name, email, subject, description };
+        try {
+            const promise = await axios.post(`${import.meta.env.VITE_SERVER}/contact`, payload).then((res) => {
+                toast.update(toastId, {
+                    render: res.data.message || 'Thanks for contacting!',
+                    type: 'success',
+                    isLoading: false,
+                    autoClose: 4000,
+                    closeOnClick: true,
+                })
+            }).catch((err) => {
+                toast.update(toastId, {
+                    render: err.data.message || 'Please try again...',
+                    type: 'error',
+                    isLoading: false,
+                    autoClose: 4000,
+                    closeOnClick: true,
+                })
+            })
+
+            e.target.reset();
+        } catch (error) {
+            // No need to toast again here — it's already handled in `toast.promise`
+            console.error(error);
         }
     };
-
     return (
         <>
             <section id="contact" ref={sectionRefs.contact} className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 relative overflow-hidden">
@@ -127,23 +155,24 @@ const ContactPage = () => {
                             : 'opacity-0 translate-x-20'
                             }`}>
                             <div className="bg-gray-800/20 backdrop-blur-sm p-8 rounded-3xl border border-purple-500/30 shadow-2xl shadow-purple-500/10">
-                                <div className="space-y-6">
+                                <form className="space-y-6" onSubmit={contactHandler}>
+
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="relative group">
                                             <input
                                                 type="text"
                                                 placeholder="Your Name"
-                                                value={contactForm.name}
-                                                onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                                                name='name'
+                                                required
                                                 className="w-full bg-gray-900/50 border border-purple-500/30 rounded-xl px-6 py-4 text-white placeholder-gray-400 focus:border-purple-400 focus:outline-none transition-all duration-300 hover:border-purple-400/60"
                                             />
                                         </div>
                                         <div className="relative group">
                                             <input
                                                 type="email"
+                                                name='email'
+                                                required
                                                 placeholder="Your Email"
-                                                value={contactForm.email}
-                                                onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
                                                 className="w-full bg-gray-900/50 border border-purple-500/30 rounded-xl px-6 py-4 text-white placeholder-gray-400 focus:border-purple-400 focus:outline-none transition-all duration-300 hover:border-purple-400/60"
                                             />
                                         </div>
@@ -153,8 +182,8 @@ const ContactPage = () => {
                                         <input
                                             type="text"
                                             placeholder="Subject"
-                                            value={contactForm.subject}
-                                            onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
+                                            name='subject'
+                                            required
                                             className="w-full bg-gray-900/50 border border-purple-500/30 rounded-xl px-6 py-4 text-white placeholder-gray-400 focus:border-purple-400 focus:outline-none transition-all duration-300 hover:border-purple-400/60"
                                         />
                                     </div>
@@ -163,13 +192,15 @@ const ContactPage = () => {
                                         <textarea
                                             rows={6}
                                             placeholder="Tell me about your project..."
-                                            value={contactForm.message}
-                                            onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                                            name='description'
+                                            required
                                             className="w-full bg-gray-900/50 border border-purple-500/30 rounded-xl px-6 py-4 text-white placeholder-gray-400 focus:border-purple-400 focus:outline-none transition-all duration-300 resize-none hover:border-purple-400/60"
                                         ></textarea>
                                     </div>
 
-                                    <button className="group relative w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-4 rounded-xl text-white font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 overflow-hidden">
+                                    <button
+                                        type='submit'
+                                        className="group relative w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-4 rounded-xl text-white font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 overflow-hidden">
                                         <span className="relative z-10 flex items-center justify-center space-x-2">
                                             <span>Send Message</span>
                                             <div className="transform group-hover:translate-x-1 transition-transform duration-300">
@@ -177,7 +208,7 @@ const ContactPage = () => {
                                             </div>
                                         </span>
                                     </button>
-                                </div>
+                                </form>
                             </div>
 
                             {/* Decorative Elements */}
