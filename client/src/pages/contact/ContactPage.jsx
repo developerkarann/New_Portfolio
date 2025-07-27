@@ -117,7 +117,7 @@ const ContactPage = () => {
                             <div className="space-y-6">
                                 {[
                                     { icon: <FaEnvelope />, title: "Email", value: "karanpal03040@gmail.com", color: "from-purple-500 to-purple-600" },
-                                    { icon: <FaPhone />, title: "Phone", value: "+91 8869012507", color: "from-pink-500 to-pink-600" },
+                                    // { icon: <FaPhone />, title: "Phone", value: "+91 8869012507", color: "from-pink-500 to-pink-600" },
                                     { icon: <FaMapMarkerAlt />, title: "Location", value: "Uttar Pradesh, India", color: "from-blue-500 to-blue-600" }
                                 ].map((contact, index) => (
                                     <div

@@ -1,13 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
-    FaGithub,
-    FaLinkedin,
-    FaTwitter,
-    FaEnvelope,
-    FaPhone,
-    FaMapMarkerAlt,
-    FaExternalLinkAlt,
-    FaCode
+    FaCode,
+    FaExternalLinkAlt
 } from 'react-icons/fa';
 
 const ProjectPage = () => {
@@ -111,7 +105,7 @@ const ProjectPage = () => {
 
     const ProjectsData = [
 
-                {
+        {
             id: 1,
             title: 'CreatorsFlame',
             description: "CreatorsFlame is a crowdfunding platform built with Next.js, featuring Razorpay integration and secure Google and GitHub authentication.",
@@ -147,8 +141,8 @@ const ProjectPage = () => {
             preview: 'https://zapchat-karandev.vercel.app',
             code: 'https://github.com/developerkarann/ZapChat_realtime-chat-application',
         },
-          {
-            
+        {
+
             id: 5,
             title: 'Gyaanta - Ed-Tech App',
             description: "Gyaanta! is an educational website offering diverse courses and interactive learning experiences for students and curious learners alike.",
@@ -219,21 +213,27 @@ const ProjectPage = () => {
                                     <p className="text-gray-400 mb-4">{project.description}</p>
 
                                     <div className="flex flex-col sm:flex-row gap-3">
-                                        <button className="flex items-center justify-center space-x-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-4 py-2 rounded-lg text-white text-sm font-medium transition-all duration-300 transform hover:scale-105">
+                                        
+                                        <a href={project.preview} target='_blank' className="flex items-center justify-center space-x-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-4 py-2 rounded-lg text-white text-sm font-medium transition-all duration-300 transform hover:scale-105">
+
                                             <FaExternalLinkAlt />
                                             <span>Preview</span>
-                                        </button>
-                                        <button className="flex items-center justify-center space-x-2 border border-purple-500 hover:bg-purple-500 px-4 py-2 rounded-lg text-purple-400 hover:text-white text-sm font-medium transition-all duration-300">
+
+                                        </a>
+
+
+                                        <a href={project.code} target='_blank' className="flex items-center justify-center space-x-2 border border-purple-500 hover:bg-purple-500 px-4 py-2 rounded-lg text-purple-400 hover:text-white text-sm font-medium transition-all duration-300">
+
                                             <FaCode />
                                             <span>Code</span>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
         </>
     )
 }

@@ -1,4 +1,5 @@
 import './App.css'
+import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import AboutPage from './pages/about/AboutPage'
 import ContactPage from './pages/contact/ContactPage'
@@ -24,6 +25,7 @@ function App() {
         <ProjectPage />
         <SkillPage />
         <ContactPage />
+        <Footer/>
 
         <ToastContainer
           position="top-center"

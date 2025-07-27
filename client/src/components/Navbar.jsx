@@ -18,6 +18,7 @@ const Navbar = () => {
         { name: 'Home', href: '#home' },
         { name: 'About', href: '#about' },
         { name: 'Projects', href: '#projects' },
+        { name: 'Skills', href: '#skills' },
         { name: 'Contact', href: '#contact' }
     ];
 
@@ -58,9 +59,9 @@ const Navbar = () => {
                                 aria-label="Toggle menu"
                             >
                                 {isMenuOpen ? (
-                                    <HiX className="h-6 w-6" />
+                                    <HiX className="h-8 w-8" />
                                 ) : (
-                                    <HiMenu className="h-6 w-6" />
+                                    <HiMenu className="h-8 w-8" />
                                 )}
                             </button>
                         </div>
@@ -83,14 +84,14 @@ const Navbar = () => {
                 ></div>
                 
                 {/* Menu Panel */}
-                <div className={`absolute top-0 right-0 h-full w-full bg-gray-900/95 backdrop-blur-md border-l border-purple-500/30 transform transition-transform duration-300 ease-in-out ${
+                <div className={`absolute top-0 right-0 h-[60%] w-full bg-gray-900/95 backdrop-blur-md border-l border-purple-500/30 transform transition-transform duration-300 ease-in-out ${
                     isMenuOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}>
                     <div className="flex flex-col h-full">
                         {/* Header */}
                         <div className="flex items-center justify-between h-16 px-4 border-b border-purple-500/30">
-                            <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                                Alex.dev
+                            <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                                Karan Pal
                             </div>
                             <button
                                 onClick={closeMenu}
@@ -109,10 +110,10 @@ const Navbar = () => {
                                         key={item.name}
                                         href={item.href}
                                         onClick={closeMenu}
-                                        className={`block text-2xl font-medium text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-2 hover:bg-purple-500/20 px-4 py-3 rounded-lg animate-slide-in`}
+                                        className={`block text-2xl text-center font-medium text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-2 hover:bg-purple-500/20 px-4 py-3 rounded-lg animate-slide-in`}
                                         style={{
                                             animationDelay: `${index * 100}ms`,
-                                            animationFillMode: 'both'
+                                         animationFillMode: 'both'
                                         }}
                                     >
                                         {item.name}
@@ -124,7 +125,7 @@ const Navbar = () => {
                         {/* Footer */}
                         <div className="px-4 py-6 border-t border-purple-500/30">
                             <div className="text-center text-gray-400 text-sm">
-                                © 2025 Alex.dev
+                                © 2025 Karanpal.in
                             </div>
                         </div>
                     </div>

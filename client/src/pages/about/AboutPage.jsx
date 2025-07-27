@@ -85,8 +85,10 @@ const AboutPage = () => {
                                 I'm passionate about creating scalable, efficient, and user-friendly applications.
                             </p>
                             <p className="text-gray-400 leading-relaxed">
-                                My expertise extends to modern development tools and practices and maintaining high-quality code. I bring creativity, 
-                                problem-solving skills, and a dedication to clean, efficient code to every project I undertake. 
+                                I bring creativity,  problem-solving skills, and a dedication to clean, efficient code to every project I undertake. 
+                                
+                            </p>
+                            <p className="text-gray-400 leading-relaxed"> 
                                 Let's bring your ideas to life!
                             </p>
 
@@ -133,10 +135,10 @@ const AboutPage = () => {
                                         <FaEnvelope className="text-purple-400" />
                                         <span className="text-gray-300">karanapal03040@gmail.com</span>
                                     </div>
-                                    <div className="flex items-center space-x-3">
+                                    {/* <div className="flex items-center space-x-3">
                                         <FaPhone className="text-purple-400" />
                                         <span className="text-gray-300">+91 8869012507</span>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 <div className="mt-8">
