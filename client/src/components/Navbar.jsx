@@ -84,7 +84,7 @@ const Navbar = () => {
                 ></div>
                 
                 {/* Menu Panel */}
-                <div className={`absolute top-0 right-0 h-[60%] w-full bg-gray-900/95 backdrop-blur-md border-l border-purple-500/30 transform transition-transform duration-300 ease-in-out ${
+                <div className={`absolute top-0 right-0 h-full w-full bg-gray-900/95 backdrop-blur-md border-l border-purple-500/30 transform transition-transform duration-300 ease-in-out ${
                     isMenuOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}>
                     <div className="flex flex-col h-full">
